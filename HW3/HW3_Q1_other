@@ -1,0 +1,111 @@
+
+b = [24; 12; 28; 16]
+
+b =
+
+    24
+    12
+    28
+    16
+
+%Question 1(b): 
+% step 1: w = L\P*b 
+w = L\P*b
+
+w =
+
+   12.0000
+   19.0000
+  -15.0000
+   -1.3636
+
+%step 2: x = U\w
+x = U\w
+
+x =
+
+    3.0000
+    1.0000
+   -0.0000
+    5.0000
+
+%Checking: the column should be all zero entry 
+A*x-b
+
+ans =
+
+   1.0e-14 *
+
+         0
+         0
+         0
+   -0.1776
+
+% Another way of checking the solution:
+x = A\b
+
+x =
+
+     3
+     1
+     0
+     5
+
+
+% The solution that we found using the component of LU factorization is matching with the direct approach but 
+% the values 
+
+
+% Qustion 1(c):
+
+%Step 1: w = (U')\c
+
+c = [26;25;16;9]
+
+c =
+
+    26
+    25
+    16
+     9
+
+w = ((U')\c)
+
+w =
+
+    6.5000
+    6.2500
+    2.9773
+    3.0000
+
+% step 2: v = (L')\w
+v = (L')\w
+
+v =
+
+    1.0000
+   -0.0000
+    4.0000
+    3.0000
+
+% step 3: y = P'*v
+y = P'*v
+
+y =
+
+    3.0000
+    1.0000
+   -0.0000
+    4.0000
+
+%checking:
+
+y'*A-c'
+
+ans =
+
+     0     0     0     0
+
+% Looks good because all values are 0 !
+
+diary off 
