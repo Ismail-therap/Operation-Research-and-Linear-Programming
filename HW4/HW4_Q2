@@ -1,0 +1,363 @@
+clear
+%Phase-1
+
+% Given Information
+A = [1 2 1 -1 1 0;-3 1 1 3 0 1]
+
+A =
+
+     1     2     1    -1     1     0
+    -3     1     1     3     0     1
+
+b = [7;9]
+
+b =
+
+     7
+     9
+
+c = [0;0;0;0;1;1]
+
+c =
+
+     0
+     0
+     0
+     0
+     1
+     1
+
+u = [1;5;8;1; Inf; Inf]
+
+u =
+
+     1
+     5
+     8
+     1
+   Inf
+   Inf
+
+%Initial basis x5 and x6
+basis = [5 6]
+
+basis =
+
+     5     6
+
+nonbasis0 = [1 2 3 4]
+
+nonbasis0 =
+
+     1     2     3     4
+
+nonbasisu = []
+
+nonbasisu =
+
+     []
+
+basisupdateu
+
+x =
+
+     0
+     0
+     0
+     0
+     7
+     9
+
+
+z =
+
+    16
+
+
+reducedatzero =
+
+     2    -3    -2    -2
+     1     2     3     4
+
+
+reducedatupper =
+
+     []
+
+%x2 enters basis, by Dantzig's rule
+enteringvar = 2
+
+enteringvar =
+
+     2
+
+
+a = A(:,enteringvar)
+
+a =
+
+     2
+     1
+
+d = solveBxb(L, U, p, a)
+
+d =
+
+     2
+     1
+
+
+eps2 = 1.0e-4 ; eps3 = 1.0e-4
+
+eps3 =
+
+   1.0000e-04
+
+
+[tlimit,leavingvar,leavingbound] = ratiotestu(basis,xb,ub,d,u(enteringvar),eps2,eps3)
+
+tlimit =
+
+    3.5000
+
+
+leavingvar =
+
+     5
+
+
+leavingbound =
+
+     0
+
+%x5 leaving the basis and leaving bound 0, so x5 entering to nonbasis0
+%group
+basis = [2 6]
+
+basis =
+
+     2     6
+
+nonbasis0= [1 3 4 5]
+
+nonbasis0 =
+
+     1     3     4     5
+
+nonbasisu = []
+
+nonbasisu =
+
+     []
+
+
+basisupdateu
+
+x =
+
+         0
+    3.5000
+         0
+         0
+         0
+    5.5000
+
+
+z =
+
+    5.5000
+
+
+reducedatzero =
+
+    3.5000   -0.5000   -3.5000    1.5000
+    1.0000    3.0000    4.0000    5.0000
+
+
+reducedatupper =
+
+     []
+
+%x4 enters basis, by Dantzig's rule
+enteringvar = 4
+
+enteringvar =
+
+     4
+
+
+a = A(:,enteringvar)
+
+a =
+
+    -1
+     3
+
+d = solveBxb(L, U, p, a)
+
+d =
+
+   -0.5000
+    3.5000
+
+[tlimit,leavingvar,leavingbound] = ratiotestu(basis,xb,ub,d,u(enteringvar),eps2,eps3)
+
+tlimit =
+
+     1
+
+
+leavingvar =
+
+     0
+
+
+leavingbound =
+
+     1
+
+
+% as non of the basis is becomem 0 if we increase x4 to it's highest limit.
+% x4 enters the nonbasisu
+
+basis = [2 6]
+
+basis =
+
+     2     6
+
+nonbasis0= [1 3 5]
+
+nonbasis0 =
+
+     1     3     5
+
+nonbasisu = [4]
+
+nonbasisu =
+
+     4
+
+
+basisupdateu
+
+x =
+
+     0
+     4
+     0
+     1
+     0
+     2
+
+
+z =
+
+     2
+
+
+reducedatzero =
+
+    3.5000   -0.5000    1.5000
+    1.0000    3.0000    5.0000
+
+
+reducedatupper =
+
+   -3.5000
+    4.0000
+
+%x3 enters basis, by Dantzig's rule
+enteringvar = 3
+
+enteringvar =
+
+     3
+
+
+a = A(:,enteringvar)
+
+a =
+
+     1
+     1
+
+d = solveBxb(L, U, p, a)
+
+d =
+
+    0.5000
+    0.5000
+
+
+
+[tlimit,leavingvar,leavingbound] = ratiotestu(basis,xb,ub,d,u(enteringvar),eps2,eps3)
+
+tlimit =
+
+     4
+
+
+leavingvar =
+
+     6
+
+
+leavingbound =
+
+     0
+
+%x6 is the leaving variable and leavingbound 0, so would consider in
+%nonbasis0 group
+
+basis = [2 3]
+
+basis =
+
+     2     3
+
+nonbasis0= [1 6 5]
+
+nonbasis0 =
+
+     1     6     5
+
+nonbasisu = [4]
+
+nonbasisu =
+
+     4
+
+
+basisupdateu
+
+x =
+
+     0
+     2
+     4
+     1
+     0
+     0
+
+
+z =
+
+     0
+
+
+reducedatzero =
+
+     0     1     1
+     1     6     5
+
+
+reducedatupper =
+
+     0
+     4
+
+
+% The LP is optimal and z = 0. So, we can use x2 and x3 as our initial
+% basis for phase 2
+diary off
