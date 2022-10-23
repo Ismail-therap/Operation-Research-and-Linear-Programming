@@ -1,0 +1,60 @@
+diary off
+test2
+rreqns removed 0 equations
+Starting Phase I 
+Iteration=0, obj=4.000000e+00, degenerate pivots=0 
+Iteration=1, obj=2.500000e+00, degenerate pivots=0 
+Iteration=2, obj=0.000000e+00, degenerate pivots=0 
+Phase Ia required 2 iterations.
+Phase Ib not required.
+Phase I finished in 2 iterations
+Starting Phase II 
+Iteration=0, obj=-4.000000e+00, degenerate pivots=0 
+Phase II finished in 0 iterations
+
+xstar =
+
+     2
+     2
+     0
+     0
+
+
+ystar =
+
+   -0.2000
+   -0.6000
+
+
+wstar =
+
+     0
+     0
+     0
+     0
+
+
+zstar =
+
+         0
+         0
+    0.2000
+    0.6000
+
+
+Axb =
+
+     0
+     0
+
+
+cx =
+
+    -4
+
+
+optobj =
+
+   -4.0000
+
+diary off

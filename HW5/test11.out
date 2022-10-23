@@ -1,0 +1,41 @@
+test11
+[Warning: Rank deficient, rank = 86, tol =  3.729103e-12.] 
+[> In rreqns (line 29)
+  In solvelp (line 51)
+  In test11 (line 8)
+] 
+rreqns removed 5 equations
+Starting Phase I 
+Iteration=0, obj=1.100000e+02, degenerate pivots=0 
+Phase Ia required 65 iterations.
+Entering Phase Ib
+Phase I finished in 86 iterations
+Starting Phase II 
+Iteration=0, obj=-1.048180e+02, degenerate pivots=0 
+Phase II finished in 27 iterations
+
+pfeas =
+
+     0
+
+
+cx =
+
+ -266.6160
+
+
+optobj =
+
+ -266.6160
+
+
+dobj =
+
+ -266.6160
+
+
+dfeas =
+
+   1.3702e-16
+
+diary off
