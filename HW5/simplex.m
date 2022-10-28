@@ -109,12 +109,39 @@ basis = all_x(end-m+1:end)
 nonbasis0 = setdiff(all_x,basis)
 nonbasisu = []
 
-% Running the updateB to get initial value for rn0 and rnu
-[B,L,U,p,cb,cn0,cnu,ub,un0,unu,xb,y,rn0,rnu,z]=updateB(A,b,c,u,const,basis,nonbasis0,nonbasisu,epsilon2);
 
 iteration = 0 % counting the iteration
 pivot = 0 %considering initial pivot 0
 
+
+%2. If iteration is == max... end !!!
+
+% Running the updateB to get initial value for rn0 and rnu... If xb entry
+% is negative then LP is infeasible and stop the whole process and going to
+% print the final output. [Checking infesibility]
+try
+    [B,L,U,p,cb,cn0,cnu,ub,un0,unu,xb,y,rn0,rnu,z]=updateB(A,b,c,u,const,basis,nonbasis0,nonbasisu,epsilon2);
+    feasibility = 1;
+catch
+    feasibility = 0;
+end
+
+if feasibility == 0
+    x = NaN*ones(n,1)
+    optobj = NaN
+    optbasis = []
+    nonbasis0 =  []
+    nonbasisu = []
+    totaliters = iteration
+    ray = NaN*ones(n,1)
+    y = NaN*ones(m,1)
+    w = NaN*ones(n,1)
+    z = NaN*ones(n,1)
+    fprintf('Iteration=',totaliters);
+    fprintf('LP is infeasible and z =',optobj);
+    return
+else
+    
 if length(rn0)>0 && length(rnu)>0
     while (abs(rn0)>=epsilon1 & abs(rnu)<=epsilon1) % (abs(rnu)<=epsilon1) when I am adding this getting error 
     iteration = iteration+1;
@@ -168,9 +195,11 @@ if length(rn0)>0 && length(rnu)>0
              fprintf("LP Optimal") % This is not the final output, I am testing with the text output!
         end    
     end
-       
+    if iteration >= 200*max(m,n/10)
+        break
+    end
 end
-elseif length(rn0)>0 && length(rnu)==0 
+elseif feasibility ~= 0 && length(rn0)>0 && length(rnu)==0 
     while (abs(rn0)>=epsilon1) % (abs(rnu)<=epsilon1) when I am adding this getting error 
     iteration = iteration+1;
     
@@ -223,9 +252,12 @@ elseif length(rn0)>0 && length(rnu)==0
              fprintf("LP Optimal") % This is not the final output, I am testing with the text output!
         end    
     end
+    if iteration >= 200*max(m,n/10)
+        break
+    end
        
 end
-else length(rnu)>0 && length(rn0)==0 
+else feasibility ~= 0 && length(rnu)>0 && length(rn0)==0 
     while (abs(rnu)<=epsilon1) % (abs(rnu)<=epsilon1) when I am adding this getting error 
     iteration = iteration+1;
     
@@ -278,7 +310,14 @@ else length(rnu)>0 && length(rn0)==0
              fprintf("LP Optimal") % This is not the final output, I am testing with the text output!
         end    
     end
+    
+    if iteration >= 200*max(m,n/10)
+        break
+    end
        
     end
+    
 end
 
+
+end
