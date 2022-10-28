@@ -97,7 +97,9 @@ end
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% My adjustment starts here %%%%%%%%%%%%%%%%
+
+%%% Phase 1 %%%%%%
 
 c =  [zeros(1,n-m) ones(1,m)]'   % Updating c for phase 1
 
@@ -107,15 +109,11 @@ basis = all_x(end-m+1:end)
 nonbasis0 = setdiff(all_x,basis)
 nonbasisu = []
 
-% Declare some important inputs
-
-
-
-
+% Running the updateB to get initial value for rn0 and rnu
 [B,L,U,p,cb,cn0,cnu,ub,un0,unu,xb,y,rn0,rnu,z]=updateB(A,b,c,u,const,basis,nonbasis0,nonbasisu,epsilon2);
 
-iteration = 0
-pivot = 0
+iteration = 0 % counting the iteration
+pivot = 0 %considering initial pivot 0
 
 if length(rn0)>0 && length(rnu)>0
     while (abs(rn0)>=epsilon1 & abs(rnu)<=epsilon1) % (abs(rnu)<=epsilon1) when I am adding this getting error 
