@@ -94,75 +94,193 @@ end
 
 
 
-%%%%%%%%%%%%%% My input
 
-% m = row; n = column
-% So, we have m number of constraints and n mumber of variables
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+c =  [zeros(1,n-m) ones(1,m)]'   % Updating c for phase 1
+
+% Initiate the basis, nonbasis0 and nonbasisu 
 all_x = 1:n;
 basis = all_x(end-m+1:end)
 nonbasis0 = setdiff(all_x,basis)
 nonbasisu = []
 
-
-% Update everything else. 
-%
-B=A(:,basis);
-[L,U,p]=lu(B,'vector');
-cb=c(basis);
-cn0=c(nonbasis0);
-cnu=c(nonbasisu);
-ub=u(basis);
-un0=u(nonbasis0);
-unu=u(nonbasisu);
-%
-% Solve for xb.
-%
-if (length(nonbasisu)>0)
-  xb=solveBxb(L,U,p,b)-solveBxb(L,U,p,A(:,nonbasisu)*unu);
-else
-  xb=solveBxb(L,U,p,b);
-end
-%
-% Check xb for feasibility and stop immediately if it isn't
-% feasible.  We increase the tolerance here because sometimes
-% Round-offf errors result in xb being a bit further away from
-% its limits.
-%
-if (min(xb) < -epsilon2*100)
-  fprintf('Error, negative entry in xb=%e\n',min(xb));
-  error('Stopping');
-end
-if (max(xb-ub) > epsilon2*100)
-  fprintf('Error, max(xb-ub)=%e\n',max(xb-ub));
-  error('Stopping');
-end
-%
-% Check that xb is in range.
-%
-%
-% Solve for y.
-%
-y=solveyBc(L,U,p,cb);
-%
-% Find the reduced costs.
-%
-if (length(nonbasis0) > 0)
-  rn0=cn0'-y'*A(:,nonbasis0);
-else
-  rn0=[];
-end
-if (length(nonbasisu) > 0)
-  rnu=cnu'-y'*A(:,nonbasisu);
-else
-  rnu=[];
-end
-if (length(nonbasisu)>0)
-  z=y'*b+rnu*unu+const;
-else
-  z=y'*b+const;
-end
+% Declare some important inputs
 
 
 
+
+[B,L,U,p,cb,cn0,cnu,ub,un0,unu,xb,y,rn0,rnu,z]=updateB(A,b,c,u,const,basis,nonbasis0,nonbasisu,epsilon2);
+
+iteration = 0
+pivot = 0
+
+if length(rn0)>0 && length(rnu)>0
+    while (abs(rn0)>=epsilon1 & abs(rnu)<=epsilon1) % (abs(rnu)<=epsilon1) when I am adding this getting error 
+    iteration = iteration+1;
+    
+    [B,L,U,p,cb,cn0,cnu,ub,un0,unu,xb,y,rn0,rnu,z]=updateB(A,b,c,u,const,basis,nonbasis0,nonbasisu,epsilon2);
+    
+    % Here "LP Infeasible" if xb<0 [Not sure how to declare infeasibility
+    % when updateB giving us an error?]
+    
+    [enteringvar,leavingvar,increasingdecreasing,d,leavingbound,tlimit]= pivotselection(basis,nonbasis0,nonbasisu,xb,ub,y,rn0,rnu,A,u,B,L,U,p,epsilon1,epsilon2,epsilon3,pivotrule)
+    
+    if enteringvar==leavingvar
+        fprintf("Bounds flip") % Not sure how to flip the bounds?
+    elseif leavingvar==0 && tlimit==+Inf 
+        fprintf("LP Unbounded") % % This is not the final output, I am testing with the text output!
+    else
+        if enteringvar ~= leavingvar && tlimit < Inf
+            
+             pivot = pivot+1
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+             % I am mainly strugling in this section becasue when
+             % leavingvar=0 I don't know for which basis variable it
+             % producing leavingvar = 0 from the basis list. So, how can i
+             % get the correct basis variable to put them in the nonbasisu
+             % when leavingvar=0???
+             
+             nonbasis0 = setdiff(nonbasis0,enteringvar);
+             if (leavingbound==0)
+                  nonbasis0 = [nonbasis0 leavingvar];
+             else
+                 nonbasisu = [nonbasisu leavingvar];
+             end
+
+             basis = setdiff(basis,leavingvar);
+             basis = sort([basis enteringvar]);
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+            fprintf("LP Optimal") % This is not the final output, I am testing with the text output!
+        else
+            
+             nonbasis0 = setdiff(nonbasis0,enteringvar);
+             if (leavingbound==0)
+                  nonbasis0 = [nonbasis0 leavingvar];
+             else
+                 nonbasisu = [nonbasisu leavingvar];
+             end
+
+             basis = setdiff(basis,leavingvar);
+             basis = sort([basis enteringvar]);
+             fprintf("LP Optimal") % This is not the final output, I am testing with the text output!
+        end    
+    end
+       
+end
+elseif length(rn0)>0 && length(rnu)==0 
+    while (abs(rn0)>=epsilon1) % (abs(rnu)<=epsilon1) when I am adding this getting error 
+    iteration = iteration+1;
+    
+    [B,L,U,p,cb,cn0,cnu,ub,un0,unu,xb,y,rn0,rnu,z]=updateB(A,b,c,u,const,basis,nonbasis0,nonbasisu,epsilon2);
+    
+    % Here "LP Infeasible" if xb<0 [Not sure how to declare infeasibility
+    % when updateB giving us an error?]
+    
+    [enteringvar,leavingvar,increasingdecreasing,d,leavingbound,tlimit]= pivotselection(basis,nonbasis0,nonbasisu,xb,ub,y,rn0,rnu,A,u,B,L,U,p,epsilon1,epsilon2,epsilon3,0)
+    
+    if enteringvar==leavingvar
+        fprintf("Bounds flip") % Not sure how to flip the bounds?
+    elseif leavingvar==0 && tlimit==+Inf 
+        fprintf("LP Unbounded") % % This is not the final output, I am testing with the text output!
+    else
+        if enteringvar ~= leavingvar && tlimit < Inf
+            
+             pivot = pivot+1
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+             % I am mainly strugling in this section becasue when
+             % leavingvar=0 I don't know for which basis variable it
+             % producing leavingvar = 0 from the basis list. So, how can i
+             % get the correct basis variable to put them in the nonbasisu
+             % when leavingvar=0???
+             
+             nonbasis0 = setdiff(nonbasis0,enteringvar);
+             if (leavingbound==0)
+                  nonbasis0 = [nonbasis0 leavingvar];
+             else
+                 nonbasisu = [nonbasisu leavingvar];
+             end
+
+             basis = setdiff(basis,leavingvar);
+             basis = sort([basis enteringvar]);
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+            fprintf("LP Optimal") % This is not the final output, I am testing with the text output!
+        else
+            
+             nonbasis0 = setdiff(nonbasis0,enteringvar);
+             if (leavingbound==0)
+                  nonbasis0 = [nonbasis0 leavingvar];
+             else
+                 nonbasisu = [nonbasisu leavingvar];
+             end
+
+             basis = setdiff(basis,leavingvar);
+             basis = sort([basis enteringvar]);
+             fprintf("LP Optimal") % This is not the final output, I am testing with the text output!
+        end    
+    end
+       
+end
+else length(rnu)>0 && length(rn0)==0 
+    while (abs(rnu)<=epsilon1) % (abs(rnu)<=epsilon1) when I am adding this getting error 
+    iteration = iteration+1;
+    
+    [B,L,U,p,cb,cn0,cnu,ub,un0,unu,xb,y,rn0,rnu,z]=updateB(A,b,c,u,const,basis,nonbasis0,nonbasisu,epsilon2);
+    
+    % Here "LP Infeasible" if xb<0 [Not sure how to declare infeasibility
+    % when updateB giving us an error?]
+    
+    [enteringvar,leavingvar,increasingdecreasing,d,leavingbound,tlimit]= pivotselection(basis,nonbasis0,nonbasisu,xb,ub,y,rn0,rnu,A,u,B,L,U,p,epsilon1,epsilon2,epsilon3,pivotrule)
+    
+    if enteringvar==leavingvar
+        fprintf("Bounds flip") % Not sure how to flip the bounds?
+    elseif leavingvar==0 && tlimit==+Inf 
+        fprintf("LP Unbounded") % % This is not the final output, I am testing with the text output!
+    else
+        if enteringvar ~= leavingvar && tlimit < Inf
+            
+             pivot = pivot+1
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+             % I am mainly strugling in this section becasue when
+             % leavingvar=0 I don't know for which basis variable it
+             % producing leavingvar = 0 from the basis list. So, how can i
+             % get the correct basis variable to put them in the nonbasisu
+             % when leavingvar=0???
+             
+             nonbasis0 = setdiff(nonbasis0,enteringvar);
+             if (leavingbound==0)
+                  nonbasis0 = [nonbasis0 leavingvar];
+             else
+                 nonbasisu = [nonbasisu leavingvar];
+             end
+
+             basis = setdiff(basis,leavingvar);
+             basis = sort([basis enteringvar]);
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+            fprintf("LP Optimal") %% This is not the final output, I am testing with the text output!
+        else
+            
+             nonbasis0 = setdiff(nonbasis0,enteringvar);
+             if (leavingbound==0)
+                  nonbasis0 = [nonbasis0 leavingvar];
+             else
+                 nonbasisu = [nonbasisu leavingvar];
+             end
+
+             basis = setdiff(basis,leavingvar);
+             basis = sort([basis enteringvar]);
+             fprintf("LP Optimal") % This is not the final output, I am testing with the text output!
+        end    
+    end
+       
+    end
+end
 
