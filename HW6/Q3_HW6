@@ -75,3 +75,137 @@ reducedatupper =
 
      []
 
+
+
+%x5 leaves the basis becasue it's the most negative one. As all reduced
+%atzero are greater than 0 then we use dual simplex method
+% k = 2 
+
+ek = [0;1]
+
+ek =
+
+     0
+     1
+
+v = ek'*inv(B)*A(:,nonbasis0)
+
+v =
+
+     1    -1    -1
+
+ratios = v./rn0
+
+ratios =
+
+    0.2000   -0.3333   -0.5000
+
+
+%x3 going to enter the basis becasue it's ratio is most negative
+
+basis=[3 4]
+
+basis =
+
+     3     4
+
+nonbasis0 = [1 2 5]
+
+nonbasis0 =
+
+     1     2     5
+
+basisupdateu
+
+x =
+
+     0
+     0
+     3
+    -2
+     0
+
+
+z =
+
+     6
+
+
+reducedatzero =
+
+     7     1     2
+     1     2     5
+
+
+reducedatupper =
+
+     []
+
+
+%x4 going to leave, k  = 2
+
+v = ek'*inv(B)*A(:,nonbasis0)
+
+v =
+
+    -1    -1     0
+
+ratios = v./rn0
+
+ratios =
+
+   -0.1429   -1.0000         0
+
+
+%x2 going to enter 
+basis=[2 3]
+
+basis =
+
+     2     3
+
+nonbasis0 = [1 4 5]
+
+nonbasis0 =
+
+     1     4     5
+
+basisupdateu
+
+x =
+
+     0
+     2
+     1
+     0
+     0
+
+
+z =
+
+     8
+
+
+reducedatzero =
+
+     6     1     2
+     1     4     5
+
+
+reducedatupper =
+
+     []
+
+
+% Checking 
+
+A'*y-c
+
+ans =
+
+    -6
+     0
+     0
+    -1
+    -2
+
