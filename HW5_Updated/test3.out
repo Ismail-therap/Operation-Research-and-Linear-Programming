@@ -1,0 +1,34 @@
+test3
+rreqns removed 0 equations
+Starting Phase I 
+Iteration=0, obj=2.000000e+00, degenerate pivots=0 
+Iteration=1, obj=1.000000e+00, degenerate pivots=0 
+Iteration=2, obj=0.000000e+00, degenerate pivots=0 
+Phase Ia required 2 iterations.
+Phase Ib not required.
+Phase I finished in 2 iterations
+Starting Phase II 
+Iteration=0, obj=-1.000000e+00, degenerate pivots=0 
+Detected unboundedness at Phase II iteration 0
+
+Axb =
+
+     0
+
+
+cx =
+
+    -1
+
+
+optobj =
+
+  -Inf
+
+
+shouldbe0 =
+
+     0
+     0
+
+diary off

@@ -1,0 +1,160 @@
+test10
+rreqns removed 0 equations
+Starting Phase I 
+Iteration=0, obj=0.000000e+00, degenerate pivots=0 
+Phase Ia required 0 iterations.
+Entering Phase Ib
+Phase I finished in 25 iterations
+Starting Phase II 
+Iteration=0, obj=0.000000e+00, degenerate pivots=0 
+Iteration=100, obj=-4.321257e+03, degenerate pivots=11 
+Iteration=200, obj=-6.531226e+03, degenerate pivots=11 
+Iteration=300, obj=-8.678151e+03, degenerate pivots=11 
+Iteration=400, obj=-1.052586e+04, degenerate pivots=11 
+Iteration=500, obj=-1.225802e+04, degenerate pivots=11 
+Iteration=600, obj=-1.415232e+04, degenerate pivots=11 
+Iteration=700, obj=-1.580050e+04, degenerate pivots=11 
+Iteration=800, obj=-1.710872e+04, degenerate pivots=11 
+Iteration=900, obj=-1.825982e+04, degenerate pivots=11 
+Iteration=1000, obj=-1.981966e+04, degenerate pivots=18 
+Iteration=1100, obj=-2.097391e+04, degenerate pivots=18 
+Iteration=1200, obj=-2.212980e+04, degenerate pivots=21 
+Iteration=1300, obj=-2.328943e+04, degenerate pivots=21 
+Iteration=1400, obj=-2.453990e+04, degenerate pivots=22 
+Iteration=1500, obj=-2.590328e+04, degenerate pivots=23 
+Iteration=1600, obj=-2.705963e+04, degenerate pivots=23 
+Iteration=1700, obj=-2.809450e+04, degenerate pivots=23 
+Iteration=1800, obj=-2.904428e+04, degenerate pivots=23 
+Iteration=1900, obj=-2.991155e+04, degenerate pivots=24 
+Iteration=2000, obj=-3.093662e+04, degenerate pivots=24 
+Iteration=2100, obj=-3.179471e+04, degenerate pivots=25 
+Iteration=2200, obj=-3.253474e+04, degenerate pivots=25 
+Iteration=2300, obj=-3.330915e+04, degenerate pivots=25 
+Iteration=2400, obj=-3.410140e+04, degenerate pivots=25 
+Iteration=2500, obj=-3.489500e+04, degenerate pivots=25 
+Iteration=2600, obj=-3.578218e+04, degenerate pivots=25 
+Iteration=2700, obj=-3.647315e+04, degenerate pivots=25 
+Iteration=2800, obj=-3.723738e+04, degenerate pivots=25 
+Iteration=2900, obj=-3.811809e+04, degenerate pivots=25 
+Iteration=3000, obj=-3.890715e+04, degenerate pivots=25 
+Iteration=3100, obj=-3.970792e+04, degenerate pivots=25 
+Iteration=3200, obj=-4.044331e+04, degenerate pivots=25 
+Iteration=3300, obj=-4.106088e+04, degenerate pivots=25 
+Iteration=3400, obj=-4.163777e+04, degenerate pivots=26 
+Iteration=3500, obj=-4.213922e+04, degenerate pivots=26 
+Iteration=3600, obj=-4.288848e+04, degenerate pivots=26 
+Iteration=3700, obj=-4.335445e+04, degenerate pivots=28 
+Iteration=3800, obj=-4.398713e+04, degenerate pivots=28 
+Iteration=3900, obj=-4.444140e+04, degenerate pivots=29 
+Iteration=4000, obj=-4.511296e+04, degenerate pivots=29 
+Iteration=4100, obj=-4.564243e+04, degenerate pivots=29 
+Iteration=4200, obj=-4.615188e+04, degenerate pivots=29 
+Iteration=4300, obj=-4.664097e+04, degenerate pivots=29 
+Iteration=4400, obj=-4.708394e+04, degenerate pivots=29 
+Iteration=4500, obj=-4.758599e+04, degenerate pivots=29 
+Iteration=4600, obj=-4.806133e+04, degenerate pivots=30 
+Iteration=4700, obj=-4.858164e+04, degenerate pivots=30 
+Iteration=4800, obj=-4.903240e+04, degenerate pivots=30 
+Iteration=4900, obj=-4.954739e+04, degenerate pivots=30 
+Iteration=5000, obj=-5.001417e+04, degenerate pivots=33 
+Iteration=5100, obj=-5.051677e+04, degenerate pivots=33 
+Iteration=5200, obj=-5.101069e+04, degenerate pivots=33 
+Iteration=5300, obj=-5.145952e+04, degenerate pivots=33 
+Iteration=5400, obj=-5.187692e+04, degenerate pivots=33 
+Iteration=5500, obj=-5.235680e+04, degenerate pivots=33 
+Iteration=5600, obj=-5.275221e+04, degenerate pivots=33 
+Iteration=5700, obj=-5.309277e+04, degenerate pivots=33 
+Iteration=5800, obj=-5.350088e+04, degenerate pivots=36 
+Iteration=5900, obj=-5.404283e+04, degenerate pivots=36 
+Iteration=6000, obj=-5.446620e+04, degenerate pivots=36 
+Iteration=6100, obj=-5.492139e+04, degenerate pivots=39 
+Iteration=6200, obj=-5.540123e+04, degenerate pivots=40 
+Iteration=6300, obj=-5.589576e+04, degenerate pivots=40 
+Iteration=6400, obj=-5.636189e+04, degenerate pivots=40 
+Iteration=6500, obj=-5.683017e+04, degenerate pivots=40 
+Iteration=6600, obj=-5.733700e+04, degenerate pivots=41 
+Iteration=6700, obj=-5.770838e+04, degenerate pivots=41 
+Iteration=6800, obj=-5.815304e+04, degenerate pivots=41 
+Iteration=6900, obj=-5.848352e+04, degenerate pivots=41 
+Iteration=7000, obj=-5.874706e+04, degenerate pivots=41 
+Iteration=7100, obj=-5.909274e+04, degenerate pivots=41 
+Iteration=7200, obj=-5.938326e+04, degenerate pivots=41 
+Iteration=7300, obj=-5.967732e+04, degenerate pivots=41 
+Iteration=7400, obj=-5.996461e+04, degenerate pivots=41 
+Iteration=7500, obj=-6.035513e+04, degenerate pivots=41 
+Iteration=7600, obj=-6.064653e+04, degenerate pivots=41 
+Iteration=7700, obj=-6.145411e+04, degenerate pivots=41 
+Iteration=7800, obj=-6.180138e+04, degenerate pivots=41 
+Iteration=7900, obj=-6.224297e+04, degenerate pivots=41 
+Iteration=8000, obj=-6.289916e+04, degenerate pivots=41 
+Iteration=8100, obj=-6.342300e+04, degenerate pivots=41 
+Iteration=8200, obj=-6.363078e+04, degenerate pivots=41 
+Iteration=8300, obj=-6.393709e+04, degenerate pivots=41 
+Iteration=8400, obj=-6.417237e+04, degenerate pivots=41 
+Iteration=8500, obj=-6.441081e+04, degenerate pivots=41 
+Iteration=8600, obj=-6.462076e+04, degenerate pivots=41 
+Iteration=8700, obj=-6.480706e+04, degenerate pivots=41 
+Iteration=8800, obj=-6.502522e+04, degenerate pivots=41 
+Iteration=8900, obj=-6.524154e+04, degenerate pivots=41 
+Iteration=9000, obj=-6.542084e+04, degenerate pivots=41 
+Iteration=9100, obj=-6.561888e+04, degenerate pivots=41 
+Iteration=9200, obj=-6.576072e+04, degenerate pivots=41 
+Iteration=9300, obj=-6.592396e+04, degenerate pivots=42 
+Iteration=9400, obj=-6.609517e+04, degenerate pivots=42 
+Iteration=9500, obj=-6.622452e+04, degenerate pivots=42 
+Iteration=9600, obj=-6.637796e+04, degenerate pivots=42 
+Iteration=9700, obj=-6.654823e+04, degenerate pivots=45 
+Iteration=9800, obj=-6.673659e+04, degenerate pivots=46 
+Iteration=9900, obj=-6.688763e+04, degenerate pivots=47 
+Iteration=10000, obj=-6.715071e+04, degenerate pivots=47 
+Iteration=10100, obj=-6.728280e+04, degenerate pivots=47 
+Iteration=10200, obj=-6.737527e+04, degenerate pivots=47 
+Iteration=10300, obj=-6.746608e+04, degenerate pivots=47 
+Iteration=10400, obj=-6.760525e+04, degenerate pivots=47 
+Iteration=10500, obj=-6.770030e+04, degenerate pivots=47 
+Iteration=10600, obj=-6.777701e+04, degenerate pivots=47 
+Iteration=10700, obj=-6.784429e+04, degenerate pivots=47 
+Iteration=10800, obj=-6.790716e+04, degenerate pivots=47 
+Iteration=10900, obj=-6.796661e+04, degenerate pivots=47 
+Iteration=11000, obj=-6.801977e+04, degenerate pivots=48 
+Iteration=11100, obj=-6.807879e+04, degenerate pivots=49 
+Iteration=11200, obj=-6.813113e+04, degenerate pivots=50 
+Iteration=11300, obj=-6.817843e+04, degenerate pivots=53 
+Iteration=11400, obj=-6.821822e+04, degenerate pivots=53 
+Iteration=11500, obj=-6.826296e+04, degenerate pivots=53 
+Iteration=11600, obj=-6.830382e+04, degenerate pivots=53 
+Iteration=11700, obj=-6.833258e+04, degenerate pivots=53 
+Iteration=11800, obj=-6.836763e+04, degenerate pivots=53 
+Iteration=11900, obj=-6.838588e+04, degenerate pivots=53 
+Iteration=12000, obj=-6.841185e+04, degenerate pivots=53 
+Iteration=12100, obj=-6.843196e+04, degenerate pivots=53 
+Iteration=12200, obj=-6.844905e+04, degenerate pivots=53 
+Iteration=12300, obj=-6.845793e+04, degenerate pivots=53 
+Iteration=12400, obj=-6.846327e+04, degenerate pivots=53 
+Phase II finished in 12488 iterations
+
+pfeas =
+
+   1.9712e-10
+
+
+cx =
+
+  -6.8464e+04
+
+
+optobj =
+
+  -6.8464e+04
+
+
+dobj =
+
+  -6.8464e+04
+
+
+dfeas =
+
+   1.8158e-17
+
+diary off

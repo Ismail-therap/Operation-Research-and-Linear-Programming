@@ -1,0 +1,6 @@
+test1
+rreqns removed 0 equations
+Starting Phase I 
+Iteration=0, obj=1.000000e+00, degenerate pivots=0 
+The LP is infeasible, obj=1.000000e+00
+diary('test2.out')

@@ -1,0 +1,40 @@
+test14
+rreqns removed 0 equations
+Starting Phase I 
+Iteration=0, obj=7.867431e+04, degenerate pivots=0 
+Iteration=100, obj=5.973207e+04, degenerate pivots=91 
+Iteration=200, obj=3.802182e+04, degenerate pivots=164 
+Iteration=300, obj=6.347027e+02, degenerate pivots=201 
+Iteration=400, obj=1.309190e-02, degenerate pivots=223 
+Phase Ia required 401 iterations.
+Phase Ib not required.
+Phase I finished in 401 iterations
+Starting Phase II 
+Iteration=0, obj=2.427107e+03, degenerate pivots=0 
+Phase II finished in 93 iterations
+
+pfeas =
+
+   7.9583e-19
+
+
+cx =
+
+ -664.2190
+
+
+optobj =
+
+ -664.2190
+
+
+dobj =
+
+ -664.2190
+
+
+dfeas =
+
+   1.0067e-14
+
+diary off
